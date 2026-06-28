@@ -1,0 +1,160 @@
+@import "tailwindcss";
+
+/* ── DESIGN TOKENS ── */
+:root {
+  --bg: #060B17;
+  --bg2: #080E1C;
+  --bg3: #0B1120;
+  --card: #0C1220;
+  --card2: #0E1428;
+  --border: rgba(255, 255, 255, 0.07);
+  --border2: rgba(26, 107, 255, 0.18);
+  --blue: #1A6BFF;
+  --blue2: #0D52CC;
+  --blue3: rgba(26, 107, 255, 0.1);
+  --blue4: rgba(26, 107, 255, 0.06);
+  --txt: #FFFFFF;
+  --txt2: #8BA8C4;
+  --txt3: rgba(255, 255, 255, 0.28);
+  --green: #00D67A;
+  --red: #FF4466;
+  --amber: #FF9500;
+  --purple: #8B5CF6;
+  --glow: 0 0 30px rgba(26, 107, 255, 0.2);
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-bg2: var(--bg2);
+  --color-bg3: var(--bg3);
+  --color-card: var(--card);
+  --color-border-subtle: var(--border);
+  --color-border-brand: var(--border2);
+  --color-brand: var(--blue);
+  --color-brand-dim: var(--blue2);
+  --color-brand-tint: var(--blue3);
+  --color-brand-ghost: var(--blue4);
+  --color-txt: var(--txt);
+  --color-txt-muted: var(--txt2);
+  --color-txt-faint: var(--txt3);
+  --color-status-green: var(--green);
+  --color-status-red: var(--red);
+  --color-status-amber: var(--amber);
+  --color-status-purple: var(--purple);
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-mono);
+}
+
+/* ── BASE ── */
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; overflow-x: hidden; }
+
+body {
+  background: var(--bg);
+  color: var(--txt);
+  font-family: var(--font-inter), sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a { color: inherit; text-decoration: none; }
+button { cursor: pointer; font-family: inherit; }
+
+/* ── SCROLL REVEAL ── */
+.rv { opacity: 0; transform: translateY(24px); transition: opacity .65s ease, transform .65s ease; }
+.rv.in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) { .rv { opacity: 1; transform: none; transition: none; } }
+
+/* ── ANIMATIONS ── */
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(0, 214, 122, 0.4); }
+  50% { opacity: 0.5; box-shadow: 0 0 0 4px rgba(0, 214, 122, 0); }
+}
+@keyframes card-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-7px); }
+}
+@keyframes ticker-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+@keyframes marquee-left {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+@keyframes feed-scroll {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-50%); }
+}
+@keyframes tst-left {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+@keyframes tst-right {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,.08); border-radius: 2px; }
+
+/* ── HOVER UTILITIES (for async server components that can't use JS handlers) ── */
+.hover-bg2 { transition: background 200ms; }
+.hover-bg2:hover { background: var(--bg2) !important; }
+.hover-bg3 { transition: background 200ms; }
+.hover-bg3:hover { background: var(--bg3) !important; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 1024px) {
+  /* Hero: collapse to single column, hide globe */
+  #hero {
+    grid-template-columns: 1fr !important;
+    min-height: auto !important;
+    padding: 60px 32px 0 !important;
+  }
+  #hero > *:nth-child(4) { display: none !important; }  /* HeroRight */
+  #hero .col-span-full   { grid-column: 1 !important; } /* HeroStats */
+
+  /* Section horizontal padding */
+  #why-hire, #services, #work, #methodology, #exec-briefing,
+  #trust-reasons, #process, #security-analysis, #meet-islam,
+  #testimonials, #cta {
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+  }
+
+  /* 3-column card grids → single column */
+  .sec-grid-3 { grid-template-columns: 1fr !important; }
+
+  /* 4-column grids → 2 columns */
+  .sec-grid-4 { grid-template-columns: 1fr 1fr !important; }
+
+  /* Meet Islam: photo + content → single column */
+  .meet-grid    { grid-template-columns: 1fr !important; }
+
+  /* Footer → 2 columns */
+  footer .grid  { grid-template-columns: 1fr 1fr !important; }
+}
+
+@media (max-width: 640px) {
+  /* Tighter padding on smallest screens */
+  #why-hire, #services, #work, #methodology, #exec-briefing,
+  #trust-reasons, #process, #security-analysis, #meet-islam,
+  #testimonials, #cta {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+
+  /* 4-column process → single column */
+  .sec-grid-4 { grid-template-columns: 1fr !important; }
+
+  /* Meet Islam approach items → single column */
+  .meet-approach { grid-template-columns: 1fr !important; }
+
+  /* Footer → single column */
+  footer .grid { grid-template-columns: 1fr !important; }
+}
