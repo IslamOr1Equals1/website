@@ -6,6 +6,11 @@ import { useModal } from '@/providers/ModalProvider'
 import { siteConfig } from '@/config/site'
 import { cn } from '@/lib/utils/cn'
 
+const NAV_LINK_STYLE = {
+  base: 'text-[.8rem] font-medium px-3 py-1.5 rounded-[5px] transition-colors duration-200',
+  hover: 'hover:text-white hover:bg-[rgba(255,255,255,.05)]',
+}
+
 export function NavbarClient() {
   const [scrolled, setScrolled] = useState(false)
   const { openContact } = useModal()
@@ -29,8 +34,12 @@ export function NavbarClient() {
       }}
       aria-label="Main navigation"
     >
-      {/* Brand */}
-      <div className="flex items-center gap-2.5">
+      {/* Brand — links to homepage */}
+      <Link
+        href="/"
+        className="flex items-center gap-2.5 focus-visible:outline-2 focus-visible:outline-[var(--blue)] focus-visible:outline-offset-4 rounded-[4px]"
+        aria-label="Islam Ahmed — Home"
+      >
         <div
           className="w-7 h-7 rounded-[4px] grid place-items-center flex-shrink-0"
           style={{ background: 'var(--blue)' }}
@@ -46,31 +55,23 @@ export function NavbarClient() {
             · Security Consultant
           </small>
         </span>
-      </div>
+      </Link>
 
-      {/* Center nav */}
+      {/* Center nav — Link handles both routes (/services) and hash anchors (/#section) */}
       <div className="hidden md:flex items-center gap-0.5">
         {siteConfig.nav.map((link) => (
-          <a
+          <Link
             key={link.href}
             href={link.href}
-            className="text-[.8rem] font-medium px-3 py-1.5 rounded-[5px] transition-colors duration-200"
+            className={cn(NAV_LINK_STYLE.base, NAV_LINK_STYLE.hover)}
             style={{ color: 'var(--txt2)' }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.color = '#fff'
-              e.currentTarget.style.background = 'rgba(255,255,255,.05)'
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.color = 'var(--txt2)'
-              e.currentTarget.style.background = 'transparent'
-            }}
           >
             {link.label}
-          </a>
+          </Link>
         ))}
         <Link
           href="/intelligence-hub"
-          className="flex items-center gap-1.5 text-[.78rem] font-semibold px-3 py-[5px] rounded-[5px] ml-1.5 transition-all duration-200"
+          className="flex items-center gap-1.5 text-[.78rem] font-semibold px-3 py-[5px] rounded-[5px] ml-1.5 transition-all duration-200 hover:bg-[rgba(26,107,255,.12)] hover:border-[rgba(26,107,255,.4)]"
           style={{
             color: 'var(--blue)',
             border: '1px solid rgba(26,107,255,.25)',
@@ -78,7 +79,7 @@ export function NavbarClient() {
           }}
         >
           Intelligence Hub
-          <span className="text-[.72rem] transition-transform duration-200">→</span>
+          <span className="text-[.72rem]" aria-hidden="true">→</span>
         </Link>
       </div>
 
@@ -102,16 +103,8 @@ export function NavbarClient() {
         </div>
         <button
           onClick={openContact}
-          className="text-[.8rem] font-semibold text-white px-[18px] py-2 rounded-[5px] transition-all duration-200"
+          className="text-[.8rem] font-semibold text-white px-[18px] py-2 rounded-[5px] transition-all duration-200 hover:bg-[var(--blue2)] hover:-translate-y-px focus-visible:outline-2 focus-visible:outline-[var(--blue)] focus-visible:outline-offset-2"
           style={{ background: 'var(--blue)' }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.background = 'var(--blue2)'
-            e.currentTarget.style.transform = 'translateY(-1px)'
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.background = 'var(--blue)'
-            e.currentTarget.style.transform = 'translateY(0)'
-          }}
           aria-label="Book a security consultation"
         >
           Book a Consultation

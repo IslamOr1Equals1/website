@@ -1,4 +1,4 @@
-import { Globe, Network, Cloud, Crosshair, BarChart2, Code2 } from 'lucide-react'
+import { Globe, Network, Cloud, Crosshair, Code2 } from 'lucide-react'
 import type { ConsultingService } from '@/services/consulting-services.service'
 
 const ICONS: Record<string, React.ComponentType<{ size?: number; stroke?: string; strokeWidth?: number }>> = {
@@ -6,7 +6,6 @@ const ICONS: Record<string, React.ComponentType<{ size?: number; stroke?: string
   network: Network,
   cloud: Cloud,
   crosshair: Crosshair,
-  'bar-chart': BarChart2,
   code: Code2,
 }
 
@@ -42,8 +41,8 @@ export function ServiceCard({ service }: ServiceCardProps) {
         {service.description}
       </p>
       <ul className="flex flex-col gap-1.5 mb-[22px]" aria-label="Service scope">
-        {service.scope.map((item, i) => (
-          <li key={i} className="text-[.76rem] leading-[1.5] flex gap-2 items-start" style={{ color: 'var(--txt2)' }}>
+        {service.scope.map((item) => (
+          <li key={item} className="text-[.76rem] leading-[1.5] flex gap-2 items-start" style={{ color: 'var(--txt2)' }}>
             <span className="w-1 h-1 rounded-full mt-1.5 flex-shrink-0" style={{ background: 'var(--blue)' }} aria-hidden="true" />
             {item}
           </li>

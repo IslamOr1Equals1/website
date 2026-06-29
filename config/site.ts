@@ -12,9 +12,9 @@ export const siteConfig = {
     github: 'https://github.com/is14m',
   },
   nav: [
-    { label: 'Services', href: '#services' },
-    { label: 'Security Insights', href: '#security-analysis' },
-    { label: 'About', href: '#meet-islam' },
+    { label: 'Services', href: '/services' },
+    { label: 'Security Insights', href: '/#security-analysis' },
+    { label: 'About', href: '/#meet-islam' },
   ],
   socials: {
     linkedin: 'https://linkedin.com/in/islamahmed',

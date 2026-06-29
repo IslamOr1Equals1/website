@@ -1,6 +1,10 @@
 # Architectural and Design Decisions
 
-A record of every significant decision made during the design and development of this platform. Each entry includes context and rationale so that future decisions can be made with full awareness of prior trade-offs.
+A record of significant decisions made during the design and development of this platform. Each entry includes context and rationale so that future decisions can be made with full awareness of prior trade-offs.
+
+> **Note:** New decisions (from Phase 4 onwards) are recorded as Architecture Decision Records (ADRs) in [`docs/adr/`](adr/). ADRs provide richer context (alternatives considered, consequences) and are immutable by design. This file covers decisions made before the ADR system was established.
+>
+> **Current ADRs:** [Technology Stack](adr/0001-project-architecture.md) · [Feature-First Architecture](adr/0002-feature-first-architecture.md) · [App Router](adr/0003-nextjs-app-router.md) · [Design System](adr/0004-design-system.md) · [Homepage IA](adr/0005-homepage-v1.md) · [Homepage v1.0.0 Release](adr/0006-homepage-release-v1.0.0.md) · [Threat Intelligence Strategy](adr/0007-threat-intelligence-strategy.md)
 
 ---
 

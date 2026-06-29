@@ -34,6 +34,7 @@ export default function RootLayout({
         <meta name="theme-color" content="#060B17" />
       </head>
       <body>
+        <a href="#main-content" className="skip-link">Skip to main content</a>
         <Providers>{children}</Providers>
         <ScrollReveal />
       </body>

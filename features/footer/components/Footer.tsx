@@ -1,19 +1,20 @@
+import Link from 'next/link'
 import { siteConfig } from '@/config/site'
 import { LAYOUT } from '@/lib/layout/constants'
 
 const FOOTER_LINKS = {
   Services: [
-    { label: 'Web Application Pentest', href: '#services' },
-    { label: 'Network & Active Directory', href: '#services' },
-    { label: 'Cloud Security Review', href: '#services' },
-    { label: 'Red Team Engagement', href: '#services' },
-    { label: 'Security Advisory', href: '#services' },
+    { label: 'Web Application Pentest', href: '/services#service-web-app' },
+    { label: 'Network & Active Directory', href: '/services#service-network-ad' },
+    { label: 'Cloud Security Review', href: '/services#service-cloud' },
+    { label: 'Red Team Engagement', href: '/services#service-red-team' },
+    { label: 'Secure Code Review', href: '/services#service-code-review' },
   ],
   Company: [
-    { label: 'About', href: '#meet-islam' },
-    { label: 'Security Insights', href: '#security-analysis' },
+    { label: 'About', href: '/#meet-islam' },
+    { label: 'Security Insights', href: '/#security-analysis' },
     { label: 'Intelligence Hub', href: '/intelligence-hub' },
-    { label: 'Contact', href: '#cta' },
+    { label: 'Contact', href: '/#cta' },
   ],
 }
 
@@ -22,7 +23,7 @@ export function Footer() {
 
   return (
     <footer style={{ background: 'var(--bg2)', borderTop: '1px solid var(--border)', padding: '52px 48px 28px' }}>
-      <div style={{ maxWidth: LAYOUT.containerMaxWidth, margin: '0 auto 36px', display: 'grid', gridTemplateColumns: '260px 1fr 1fr 200px', gap: 44 }}>
+      <div className="grid" style={{ maxWidth: LAYOUT.containerMaxWidth, margin: '0 auto 36px', display: 'grid', gridTemplateColumns: '260px 1fr 1fr 200px', gap: 44 }}>
         {/* Brand */}
         <div>
           <p className="text-[.95rem] font-bold text-white mb-[3px] tracking-[-0.01em]">{siteConfig.name}</p>
@@ -43,19 +44,21 @@ export function Footer() {
               { label: 'LinkedIn', href: siteConfig.socials.linkedin },
               { label: 'GitHub', href: siteConfig.socials.github },
               { label: 'Email', href: `mailto:${siteConfig.author.email}` },
-            ].map((soc) => (
-              <a
-                key={soc.label}
-                href={soc.href}
-                className="text-[.68rem] font-semibold px-2.5 py-1 rounded-[4px] transition-all duration-200 hover:text-white hover:border-[rgba(255,255,255,.2)]"
-                style={{ color: 'var(--txt3)', border: '1px solid var(--border)' }}
-                rel="noopener noreferrer"
-                target={soc.href.startsWith('mailto') ? undefined : '_blank'}
-                aria-label={soc.href.startsWith('mailto') ? undefined : `${soc.label} (opens in new tab)`}
-              >
-                {soc.label}
-              </a>
-            ))}
+            ].map((soc) => {
+              const isExternal = soc.href.startsWith('http')
+              return (
+                <a
+                  key={soc.label}
+                  href={soc.href}
+                  className="text-[.68rem] font-semibold px-2.5 py-1 rounded-[4px] transition-all duration-200 hover:text-white hover:border-[rgba(255,255,255,.2)]"
+                  style={{ color: 'var(--txt3)', border: '1px solid var(--border)' }}
+                  {...(isExternal ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                  aria-label={isExternal ? `${soc.label} (opens in new tab)` : undefined}
+                >
+                  {soc.label}
+                </a>
+              )
+            })}
           </div>
         </div>
 
@@ -67,14 +70,14 @@ export function Footer() {
             </p>
             <nav className="flex flex-col gap-[9px]" aria-label={`${title} links`}>
               {links.map((link) => (
-                <a
+                <Link
                   key={link.label}
                   href={link.href}
                   className="text-[.8rem] transition-colors duration-200 hover:text-white"
                   style={{ color: 'var(--txt3)' }}
                 >
                   {link.label}
-                </a>
+                </Link>
               ))}
             </nav>
           </div>
@@ -89,7 +92,6 @@ export function Footer() {
             href={`mailto:${siteConfig.author.email}`}
             className="text-center text-[.78rem] font-semibold py-[9px] px-3.5 rounded-[5px] mb-2.5 transition-all duration-200 hover:border-[rgba(26,107,255,.5)] hover:bg-[rgba(26,107,255,.1)]"
             style={{ color: 'var(--blue)', border: '1px solid rgba(26,107,255,.3)', background: 'rgba(26,107,255,.05)' }}
-            rel="noopener noreferrer"
           >
             Send an Email →
           </a>

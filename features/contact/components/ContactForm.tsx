@@ -153,7 +153,7 @@ export function ContactForm({ onSuccess }: ContactFormProps) {
             <option value="network-ad">Network &amp; Active Directory</option>
             <option value="cloud">Cloud Security Review</option>
             <option value="red-team">Red Team Engagement</option>
-            <option value="advisory">Security Advisory</option>
+            <option value="code-review">Secure Code Review</option>
             <option value="other">Other / Not Sure</option>
           </select>
           {errors.service && <p style={errorStyle} role="alert">{errors.service.message}</p>}

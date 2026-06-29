@@ -28,7 +28,7 @@ export function CtaButtons() {
         Book a Security Consultation
       </button>
       <a
-        href="#services"
+        href="/services"
         className="inline-flex items-center gap-2 text-[.9rem] font-semibold px-7 py-[13px] rounded-[6px] transition-all duration-200"
         style={{ color: 'var(--txt2)', background: 'rgba(255,255,255,.04)', border: '1px solid var(--border)' }}
         onMouseEnter={(e) => {
